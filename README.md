@@ -10,7 +10,7 @@ A portfolio of Data Science and ML projects where I explore data, build models, 
 - Built a logistic regression model to predict whether a match goes to 3 sets.
 - Includes EDA, visualizations (bar, line, box plots), feature engineering, and model evaluation.
 
-👉 **Notebook:** _add the GitHub link to your `project2.ipynb` here_  
+👉 **Notebook:** https://github.com/GranBan/granthbangard_data-science_portfolio/blob/main/badminton-match-analysis/badminton-match-analysis.ipynb  
 
 ---
 
@@ -32,4 +32,4 @@ A business-focused ML project (e.g., churn, loan default, or attrition predictio
 ## 📬 Contact
 
 **Email:** bangard2@illinois.edu  
-**GitHub:** https://github.com/GranthBan
+**GitHub:** https://github.com/GranBan
