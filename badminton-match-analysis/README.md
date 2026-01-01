@@ -1,10 +1,10 @@
-# 🏸 Badminton Match Analysis (BWF World Tour 2018–2021)
+# Badminton Match Analysis (BWF World Tour 2018–2021)
 
 This project analyzes 6,736 professional badminton matches from the BWF World Tour between 2018 and 2021. It explores trends in match competitiveness, country performance, player behavior, and includes a predictive model to identify highly competitive matches (three-set outcomes).
 
 ---
 
-## 🔍 Project Objectives
+## Project Objectives
 - Understand competitive patterns across men's and women's singles
 - Analyze country dominance and tournament-level differences
 - Explore how match characteristics influence competitiveness
@@ -13,14 +13,14 @@ This project analyzes 6,736 professional badminton matches from the BWF World To
 
 ---
 
-## 🔑 Key Insights
+## Key Insights
 - Three-set matches were more common in evenly ranked matchups, indicating competitiveness is strongly tied to parity
 - Post-COVID seasons showed shorter average match durations, suggesting changes in tournament structure and player conditioning
 - Countries such as India and China consistently produced longer, more competitive matches across tournaments
 
 ---
 
-## 📊 Methods & Techniques
+## Methods & Techniques
 
 ### **1. Exploratory Data Analysis (EDA)**
 - Score distributions and match duration patterns  
@@ -42,7 +42,7 @@ This project analyzes 6,736 professional badminton matches from the BWF World To
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 badminton-match-analysis/  
 -badminton-match-analysis.ipynb  
@@ -51,7 +51,7 @@ badminton-match-analysis/
 
 ---
 
-## 🧠 Skills Demonstrated
+## Skills Demonstrated
 - Python (pandas, NumPy, Matplotlib, seaborn)
 - Data cleaning and preprocessing  
 - Exploratory Data Analysis (EDA)  
@@ -61,12 +61,12 @@ badminton-match-analysis/
 
 ---
 
-## 📘 View the Notebook
+## View the Notebook
 👉 **Open the notebook:** https://github.com/GranBan/granthbangard_data-science_portfolio/blob/main/badminton-match-analysis/badminton-match-analysis.ipynb
 
 ---
 
-## 🚀 Future Improvements
+## Future Improvements
 - Add Random Forest/XGBoost models for comparison  
 - Player ranking analysis over time  
 - Tournament-specific prediction models  
