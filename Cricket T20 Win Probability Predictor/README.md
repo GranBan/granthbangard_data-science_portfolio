@@ -1,17 +1,17 @@
 # Cricket T20 Win Probability Predictor
 
-![Python](https://img.shields.io/badge/Python-3.13-blue) &nbsp;&nbsp; ![XGBoost](https://img.shields.io/badge/XGBoost-ML-success) &nbsp;&nbsp; ![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-red)
+![Python](https://img.shields.io/badge/Python-3.13-blue) &nbsp;&nbsp; ![XGBoost](https://img.shields.io/badge/XGBoost-ML-success) &nbsp;&nbsp; ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688) &nbsp;&nbsp; ![Next.js](https://img.shields.io/badge/Next.js-Frontend-black)
 
 **Notebook:** [View](https://github.com/GranBan/granthbangard_ds_portfolio/blob/main/Cricket%20T20%20Win%20Probability%20Predictor/t20_win_probability.ipynb)  
-**Live App:** [Open](https://cricket-t20-win-probability.streamlit.app)  
-**App Source Code:** [View](https://github.com/GranBan/cricket-t20-win-probability)
+**Live App:** [Open](https://cricket-t20-win-probability.vercel.app)  
+**Frontend Source:** [View](https://github.com/GranBan/t20-win-probability-predictor)  
+**Backend Source:** [View](https://github.com/GranBan/backend-t20-win-probability)
 
 Predicts the win probability of the chasing team after every over of a T20 cricket match, using ball-by-ball data from 2.3 million deliveries across 10,458 professional matches. Calibrated XGBoost achieves 0.924 AUC and 0.112 Brier Score on a chronologically held-out 2025-2026 test set, validated against real match narratives including the 2024 T20 World Cup Final.
 
 ![Matches](https://img.shields.io/badge/MATCHES-10,458-1f2937?style=for-the-badge) &nbsp;&nbsp;&nbsp; ![Deliveries](https://img.shields.io/badge/DELIVERIES-2.39M-1f2937?style=for-the-badge) &nbsp;&nbsp;&nbsp; ![Leagues](https://img.shields.io/badge/LEAGUES-10-1f2937?style=for-the-badge) &nbsp;&nbsp;&nbsp; ![AUC](https://img.shields.io/badge/AUC-0.924-10b981?style=for-the-badge) &nbsp;&nbsp;&nbsp; ![Brier](https://img.shields.io/badge/BRIER-0.112-10b981?style=for-the-badge)
 
 ## Contents
-
 - [Live Demo](#live-demo)
 - [Why This Project Exists](#why-this-project-exists)
 - [Pipeline](#pipeline)
@@ -34,9 +34,11 @@ Predicts the win probability of the chasing team after every over of a T20 crick
 
 ## Live Demo
 
-- **App:** https://cricket-t20-win-probability.streamlit.app
+- **App:** https://cricket-t20-win-probability.vercel.app
+
 > [!NOTE]
-> The app may take 30-60 seconds to wake up on first load if it's been inactive, Streamlit Community Cloud puts unused apps to sleep. Subsequent loads are fast.
+> The backend (FastAPI on Render's free tier) may take up to 30 seconds to wake up on first load if it's been inactive. Subsequent requests are fast. The frontend itself loads instantly since it's statically hosted on Vercel.
+
 - **Notebook:** https://github.com/GranBan/granthbangard_ds_portfolio/blob/main/Cricket%20T20%20Win%20Probability%20Predictor/t20_win_probability.ipynb
 - **Data Source:** [Cricsheet](https://cricsheet.org)
 
@@ -49,16 +51,18 @@ Predicts the win probability of the chasing team after every over of a T20 crick
 ![Description](assets/screenshots/live_match_predictor.png)
 
 ---
+
 ![Description](assets/screenshots/live_prediction_explainer.png)
 
 ---
+
 ![Description](assets/screenshots/live_prediction_SHAP_features_waterfall.png)
 
 ---
 
 ## Results
 
-10,458 matches, 2.39M ball-level records, one calibrated XGBoost model. AUC 0.924, Log Loss 0.345, Brier Score 0.112 on a chronologically held-out 2025-2026 season. Three features removed on SHAP evidence with no performance cost. Validated quantitatively on a chronologically held-out test set and qualitatively against 21 historic matches before deployment as a 5-page live Streamlit application.
+10,458 matches, 2.39M ball-level records, one calibrated XGBoost model. AUC 0.924, Log Loss 0.345, Brier Score 0.112 on a chronologically held-out 2025-2026 season. Three features removed on SHAP evidence with no performance cost. Validated quantitatively on a chronologically held-out test set and qualitatively against 21 historic matches before deployment as a full-stack application with a FastAPI backend and Next.js frontend.
 
 ---
 
@@ -82,8 +86,8 @@ graph LR
     H --> I[XGBoost]
     I --> J[Isotonic calibration]
     J --> K[SHAP feature selection]
-    K --> L[Streamlit deployment]
-
+    K --> L[FastAPI backend]
+    L --> M[Next.js frontend]
     style A fill:#1f2937,stroke:#3b82f6,color:#fff
     style B fill:#1f2937,stroke:#3b82f6,color:#fff
     style C fill:#1f2937,stroke:#3b82f6,color:#fff
@@ -96,6 +100,7 @@ graph LR
     style J fill:#1f2937,stroke:#ef4444,color:#fff
     style K fill:#1f2937,stroke:#ef4444,color:#fff
     style L fill:#1f2937,stroke:#8b5cf6,color:#fff
+    style M fill:#1f2937,stroke:#8b5cf6,color:#fff
 ```
 
 ---
@@ -119,6 +124,8 @@ graph LR
 
 **SHAP for feature selection.** Not just an interpretation chart, three features showed exactly zero mean absolute SHAP value and were dropped with no performance loss, an evidence-driven decision, not intuition.
 
+**Deployment.** The trained model, encoders, and SHAP explainer are served through a FastAPI backend exposing REST endpoints for prediction, match replay, and feature explanations. The Next.js frontend consumes these endpoints and handles all interactivity client-side, replacing the original Streamlit app's single-process, full-page-rerun architecture with a proper two-tier setup.
+
 ---
 
 ## Interactive Demo
@@ -136,8 +143,8 @@ graph LR
 ![Description](assets/screenshots/famous_matches.png)
 
 ---
-![Description](assets/screenshots/calibration_curves.png)
 
+![Description](assets/screenshots/calibration_curves.png)
 
 ---
 
@@ -166,9 +173,10 @@ Both models are well-calibrated in the 0.5-0.8 range, with Logistic Regression t
 
 ## Repository Structure
 
-This repository contains the analysis notebook. The deployed Streamlit app lives in a separate repository.
+This repository contains the analysis notebook. The deployed application lives across two separate repositories.
 
-**App source code:** https://github.com/GranBan/cricket-t20-win-probability
+**Frontend source:** https://github.com/GranBan/t20-win-probability-predictor  
+**Backend source:** https://github.com/GranBan/backend-t20-win-probability
 
 ```
 Cricket T20 Win Probability Predictor/  
@@ -186,17 +194,19 @@ Cricket T20 Win Probability Predictor/
 
 ## Installation
 
-This repository contains the model development notebook. The deployed Streamlit application is maintained in a separate repository:
+This repository contains the model development notebook. The deployed application is maintained across two separate repositories:
 
-**Cricket:** https://github.com/GranBan/cricket-t20-win-probability
+**Frontend:** https://github.com/GranBan/t20-win-probability-predictor  
+**Backend:** https://github.com/GranBan/backend-t20-win-probability
 
 ## Tech Stack
 
-- **Language:** Python
+- **Language:** Python, TypeScript
 - **ML:** scikit-learn, XGBoost
 - **Explainability:** SHAP
-- **Visualization:** Matplotlib, Plotly
-- **Deployment:** Streamlit Community Cloud
+- **Visualization:** Matplotlib, Plotly (notebook) · Recharts (frontend)
+- **Backend:** FastAPI, deployed on Render
+- **Frontend:** Next.js, React, Tailwind CSS, Framer Motion, deployed on Vercel
 - **Data:** Cricsheet (JSON), pandas, NumPy
 
 ---
@@ -213,6 +223,8 @@ This repository contains the model development notebook. The deployed Streamlit 
 **Why isotonic over Platt scaling?** Isotonic is non-parametric and more flexible, and 142K+ training rows avoid its main failure mode of overfitting small samples.
 
 **Why label encoding over one-hot?** One-hot across hundreds of venues/teams from 10 leagues creates a large sparse space for marginal benefit. Encoders fit on the full dataset before the split, since encoding doesn't touch the target and carries no leakage risk.
+
+**Why migrate off Streamlit?** Streamlit Community Cloud's free tier sleeps after inactivity, producing a 30-60 second cold start on first load, unacceptable for a resume-linked demo a recruiter might click once. Streamlit's rerun-the-whole-script-on-every-interaction model also capped how polished the UI could get. A FastAPI backend plus a statically-hosted Next.js frontend removes the cold-start entirely on the frontend side and allows real animation, layout control, and a more product-like feel.
 
 </details>
 
@@ -233,6 +245,7 @@ This repository contains the model development notebook. The deployed Streamlit 
 - Calibration was evaluated with the calibrator fit on the test set itself; a three-way split would remove this optimism bias
 - The model degrades on extreme last-ball scenarios (15+ runs off one ball), a genuine edge case with sparse historical precedent
 - Venue isn't meaningfully used at inference time in the deployed app, since exact venue input isn't practical for a casual user
+- The Render free-tier backend still experiences a cold start on first request after inactivity; only the frontend's cold start was eliminated by the migration
 
 </details>
 
