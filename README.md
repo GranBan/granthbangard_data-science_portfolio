@@ -1,19 +1,18 @@
 # Granth Bangard | Data Science Portfolio
 
-End-to-end Machine Learning and Data Science projects spanning predictive modeling, NLP, explainable AI, and interactive deployment.
+End-to-end Machine Learning and Data Science projects spanning predictive modeling, NLP, explainable AI, and full-stack deployment.
 
-![Python](https://img.shields.io/badge/Python-3.13-blue) ![XGBoost](https://img.shields.io/badge/XGBoost-ML-success) ![Transformers](https://img.shields.io/badge/Transformers-NLP-orange) ![SHAP](https://img.shields.io/badge/SHAP-Explainability-red) ![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.13-blue) ![XGBoost](https://img.shields.io/badge/XGBoost-ML-success) ![Transformers](https://img.shields.io/badge/Transformers-NLP-orange) ![SHAP](https://img.shields.io/badge/SHAP-Explainability-red) ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688) ![Next.js](https://img.shields.io/badge/Next.js-Frontend-black)
 
-**2 Production-style ML Apps** · **100K+ Reviews** · **2.39M Sports Events** · **11+ Million Data Points Processed** · **10,458 Cricket Matches** · **Interactive Streamlit Deployments**
+**2 Full-Stack ML Applications** · **100K+ Reviews** · **2.39M Sports Events** · **11+ Million Data Points Processed** · **10,458 Cricket Matches** · **FastAPI + Next.js Deployments**
 
-Every project follows an end-to-end ML workflow: build an interpretable model, evaluate it rigorously, document key engineering decisions, and, where appropriate, deploy it as an interactive application.
+Every project follows an end-to-end ML workflow: build an interpretable model, evaluate it rigorously, document key engineering decisions, and, where appropriate, deploy it as a production-style application.
 
 ---
 
 > **Featured Projects:** Click any project below to explore the notebook, live application, and complete technical documentation.
 
 ## Contents
-
 - [Skills](#skills)
 - [Projects](#projects)
 - [Contact](#contact)
@@ -30,7 +29,8 @@ Every project follows an end-to-end ML workflow: build an interpretable model, e
 | **Explainability** | SHAP |
 | **Validation** | Temporal train/test splits, calibration (isotonic regression) |
 | **Visualization** | Plotly, Matplotlib, Seaborn |
-| **Deployment** | Streamlit |
+| **Backend** | FastAPI, Render |
+| **Frontend** | Next.js, React, Tailwind CSS, Framer Motion, Recharts, Vercel |
 
 ---
 
@@ -44,9 +44,9 @@ Every project follows an end-to-end ML workflow: build an interpretable model, e
 - **Model:** Calibrated XGBoost, benchmarked against a Logistic Regression baseline
 - **Results:** AUC 0.924 · Log Loss 0.345 · Brier Score 0.112, on a chronologically held-out 2025-2026 test set
 - Temporal train/test split to prevent leakage, isotonic calibration, and SHAP-driven feature selection (three zero-importance features removed with no performance cost)
-- Deployed as a 5-page Streamlit app with live prediction, full match replay, and 21 famous match case studies
+- Deployed as a full-stack application: FastAPI backend serving live predictions and SHAP explanations, Next.js frontend with live prediction, full match replay, and 21 famous match case studies
 
-🔗 [Notebook](https://github.com/GranBan/granthbangard_ds_portfolio/blob/main/Cricket%20T20%20Win%20Probability%20Predictor/t20_win_probability.ipynb) &nbsp;·&nbsp; 🔗 [Live App](https://cricket-t20-win-probability.streamlit.app) &nbsp;·&nbsp; 🔗 [App Source](https://github.com/GranBan/cricket-t20-win-probability)
+🔗 [Notebook](https://github.com/GranBan/granthbangard_ds_portfolio/blob/main/Cricket%20T20%20Win%20Probability%20Predictor/t20_win_probability.ipynb) &nbsp;·&nbsp; 🔗 [Live App](https://cricket-t20-win-probability.vercel.app) &nbsp;·&nbsp; 🔗 [Frontend](https://github.com/GranBan/t20-win-probability-predictor) &nbsp;·&nbsp; 🔗 [Backend](https://github.com/GranBan/backend-t20-win-probability)
 
 ---
 
@@ -59,9 +59,9 @@ Every project follows an end-to-end ML workflow: build an interpretable model, e
 - **Results:** Macro F1 0.935 · 96.2% average prediction confidence
 - Identified a real regression (versions 9.1.46/9.1.48, 77% and 75% negative sentiment) via temporal trend analysis
 - Custom priority matrix scores complaints by frequency, severity, and recent trend, converting NLP output into a ranked, actionable fix list
-- Deployed as a 7-page Streamlit app with topic exploration, version trends, and misclassification analysis
+- Deployed as a full-stack application: FastAPI backend serving sentiment, topic, and priority analytics, Next.js frontend with complaint exploration, version trends, and misclassification analysis
 
-🔗 [Notebook](https://github.com/GranBan/granthbangard_ds_portfolio/blob/main/Spotify%20NLP%20App%20Review%20Intelligence%20System/app_review_nlp.ipynb) &nbsp;·&nbsp; 🔗 [Live App](https://spotify-review-intelligence.streamlit.app) &nbsp;·&nbsp; 🔗 [App Source](https://github.com/GranBan/spotify-review-intelligence)
+🔗 [Notebook](https://github.com/GranBan/granthbangard_ds_portfolio/blob/main/Spotify%20NLP%20App%20Review%20Intelligence%20System/app_review_nlp.ipynb) &nbsp;·&nbsp; 🔗 [Live App](https://spotify-app-review-intelligence.vercel.app) &nbsp;·&nbsp; 🔗 [Frontend](https://github.com/GranBan/spotify-app-review-intelligence) &nbsp;·&nbsp; 🔗 [Backend](https://github.com/GranBan/backend-spotify-review-intelligence)
 
 ---
 
