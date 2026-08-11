@@ -1,17 +1,17 @@
 # Spotify NLP App Review Intelligence System
 
-![Python](https://img.shields.io/badge/Python-3.13-blue) &nbsp;&nbsp; ![DistilBERT](https://img.shields.io/badge/DistilBERT-Transformers-success) &nbsp;&nbsp; ![BERTopic](https://img.shields.io/badge/BERTopic-NLP-orange) &nbsp;&nbsp; ![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-red) &nbsp;&nbsp;
+![Python](https://img.shields.io/badge/Python-3.13-blue) &nbsp;&nbsp; ![DistilBERT](https://img.shields.io/badge/DistilBERT-Transformers-success) &nbsp;&nbsp; ![BERTopic](https://img.shields.io/badge/BERTopic-NLP-orange) &nbsp;&nbsp; ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688) &nbsp;&nbsp; ![Next.js](https://img.shields.io/badge/Next.js-Frontend-black)
 
 **Notebook:** [View](https://github.com/GranBan/granthbangard_ds_portfolio/blob/main/Spotify%20NLP%20App%20Review%20Intelligence%20System/app_review_nlp.ipynb)  
-**Live App:** [Open](https://spotify-review-intelligence.streamlit.app)  
-**App Source Code:** [View](https://github.com/GranBan/spotify-review-intelligence)
+**Live App:** [Open](https://spotify-app-review-intelligence.vercel.app)  
+**Frontend Source:** [View](https://github.com/GranBan/spotify-app-review-intelligence)  
+**Backend Source:** [View](https://github.com/GranBan/backend-spotify-review-intelligence)
 
 Transforms 100,000 raw Google Play reviews into a prioritized product decision system for Spotify. Fine-tuned DistilBERT classifies sentiment from text (93.5% macro F1), BERTopic discovers 51 complaint themes, and a custom priority matrix scores each theme by frequency, severity, and recent trend into a ranked, actionable fix list.
 
 ![Reviews](https://img.shields.io/badge/REVIEWS-100K-1f2937?style=for-the-badge) &nbsp;&nbsp;&nbsp;&nbsp; ![Topics](https://img.shields.io/badge/TOPICS-51-1f2937?style=for-the-badge) &nbsp;&nbsp;&nbsp;&nbsp; ![Macro F1](https://img.shields.io/badge/MACRO_F1-0.935-10b981?style=for-the-badge) &nbsp;&nbsp;&nbsp;&nbsp; ![Confidence](https://img.shields.io/badge/CONFIDENCE-96.2%25-10b981?style=for-the-badge)
 
 ## Contents
-
 - [Live Demo](#live-demo)
 - [Why This Project Exists](#why-this-project-exists)
 - [Pipeline](#pipeline)
@@ -33,9 +33,11 @@ Transforms 100,000 raw Google Play reviews into a prioritized product decision s
 
 ## Live Demo
 
-- **App:** https://spotify-review-intelligence.streamlit.app
+- **App:** https://spotify-app-review-intelligence.vercel.app
+
 > [!NOTE]
-> The app may take 30-60 seconds to wake up on first load if it's been inactive, Streamlit Community Cloud puts unused apps to sleep. Subsequent loads are fast.
+> The backend (FastAPI on Render's free tier) may take up to 30 seconds to wake up on first load if it's been inactive. Subsequent requests are fast. The frontend itself loads instantly since it's statically hosted on Vercel.
+
 - **Notebook:** https://github.com/GranBan/granthbangard_ds_portfolio/blob/main/Spotify%20NLP%20App%20Review%20Intelligence%20System/app_review_nlp.ipynb
 - **Data Source:** Google Play Store, scraped directly via `google-play-scraper`
 
@@ -57,7 +59,7 @@ Transforms 100,000 raw Google Play reviews into a prioritized product decision s
 
 ## Results
 
-100,000 reviews, one fine-tuned DistilBERT classifier (93.5% macro F1), 51 BERTopic-discovered complaint themes, one real regression identified (versions 9.1.46/9.1.48), one custom priority matrix. Deployed as a 7-page live Streamlit application translating raw review text into a ranked product backlog.
+100,000 reviews, one fine-tuned DistilBERT classifier (93.5% macro F1), 51 BERTopic-discovered complaint themes, one real regression identified (versions 9.1.46/9.1.48), one custom priority matrix. Deployed as a full-stack application with a FastAPI backend and Next.js frontend, translating raw review text into a ranked product backlog.
 
 ---
 
@@ -81,8 +83,8 @@ graph LR
     H --> I[Manual topic labeling]
     I --> J[Temporal trend analysis]
     J --> K[Priority matrix]
-    K --> L[Streamlit deployment]
-
+    K --> L[FastAPI backend]
+    L --> M[Next.js frontend]
     style A fill:#1f2937,stroke:#3b82f6,color:#fff
     style B fill:#1f2937,stroke:#3b82f6,color:#fff
     style C fill:#1f2937,stroke:#3b82f6,color:#fff
@@ -95,6 +97,7 @@ graph LR
     style J fill:#1f2937,stroke:#ef4444,color:#fff
     style K fill:#1f2937,stroke:#ef4444,color:#fff
     style L fill:#1f2937,stroke:#8b5cf6,color:#fff
+    style M fill:#1f2937,stroke:#8b5cf6,color:#fff
 ```
 
 **Ingestion.** 100,000 Spotify reviews scraped directly from Google Play, preserving app version metadata needed for temporal analysis, a static Kaggle dump wouldn't have this.
@@ -116,6 +119,8 @@ graph LR
 
 **Priority matrix.** Frequency (50%), severity (30%, average star rating), and recent trend (20%, share of the 5 most recent versions) combine into a single score per topic, converting NLP output directly into a ranked engineering backlog with a recommended action per issue.
 
+**Deployment.** All precomputed outputs, sentiment labels, topics, priority scores, embeddings, are served through a FastAPI backend exposing REST endpoints per page. The Next.js frontend consumes these endpoints and handles all interactivity client-side, replacing the original Streamlit app's single-process, full-page-rerun architecture with a proper two-tier setup.
+
 ---
 
 ## Interactive Demo
@@ -131,8 +136,6 @@ graph LR
 **Misclassification Analysis** - Where model predictions disagree with star ratings, and why.
 
 **Embedding Visualization** - 2D UMAP projection showing how BERTopic separates complaint themes.
-
----
 
 ![Description](assets/screenshots/complaint_intelligence.png)
 
@@ -157,9 +160,10 @@ Average prediction confidence is 96.2%, with 90.5% of predictions above 90% conf
 
 ## Repository Structure
 
-This repository contains the analysis notebook. The deployed Streamlit app lives in a separate repository.
+This repository contains the analysis notebook. The deployed application lives across two separate repositories.
 
-**App source code:** https://github.com/GranBan/spotify-review-intelligence
+**Frontend source:** https://github.com/GranBan/spotify-app-review-intelligence  
+**Backend source:** https://github.com/GranBan/backend-spotify-review-intelligence
 
 ```
 Spotify NLP App Review Intelligence System/
@@ -176,16 +180,18 @@ Spotify NLP App Review Intelligence System/
 
 ## Installation
 
-This repository contains the model development notebook. The deployed Streamlit application is maintained in a separate repository:
+This repository contains the model development notebook. The deployed application is maintained across two separate repositories:
 
-**NLP:** https://github.com/GranBan/spotify-review-intelligence
+**Frontend:** https://github.com/GranBan/spotify-app-review-intelligence  
+**Backend:** https://github.com/GranBan/backend-spotify-review-intelligence
 
 ## Tech Stack
 
-- **Language:** Python
+- **Language:** Python, TypeScript
 - **NLP/ML:** transformers, DistilBERT, BERTopic, sentence-transformers, scikit-learn
-- **Visualization:** Plotly
-- **Deployment:** Streamlit Community Cloud
+- **Visualization:** Plotly (notebook) · Recharts (frontend)
+- **Backend:** FastAPI, deployed on Render
+- **Frontend:** Next.js, React, Tailwind CSS, Framer Motion, deployed on Vercel
 - **Data:** google-play-scraper, pandas, NumPy
 
 ---
@@ -201,6 +207,8 @@ This repository contains the model development notebook. The deployed Streamlit 
 
 **Why a 10-word minimum for topic modeling?** 33% of all reviews are 5 words or fewer. These produce generic embeddings that dilute cluster quality; the threshold retains 19,406+ usable negative reviews while removing noise.
 
+**Why migrate off Streamlit?** Streamlit Community Cloud's free tier sleeps after inactivity, producing a 30-60 second cold start on first load, unacceptable for a resume-linked demo a recruiter might click once. Streamlit's memory ceiling on the free tier also constrained how the app served its precomputed datasets. A FastAPI backend plus a statically-hosted Next.js frontend removes the cold-start entirely on the frontend side and gives full control over how each dataset is served.
+
 </details>
 
 <details>
@@ -208,7 +216,7 @@ This repository contains the model development notebook. The deployed Streamlit 
 
 **Non-English contamination.** Despite `lang='en'` in the scraper call, ~5% of reviews passed through in other languages, discovered only after an initial BERTopic run produced entire clusters of Hindi and Arabic text mixed into the English topic space. Fixed with a `langdetect` pass before clustering.
 
-**Deployment memory limits.** Loading the full 100K-row, multi-column dataset directly in Streamlit caused repeated segmentation faults on Streamlit Community Cloud's free tier. Fixed by splitting into purpose-specific lightweight CSVs rather than loading full data on every page.
+**Deployment memory limits (original Streamlit app).** Loading the full 100K-row, multi-column dataset directly in Streamlit caused repeated segmentation faults on Streamlit Community Cloud's free tier. Fixed at the time by splitting into purpose-specific lightweight CSVs rather than loading full data on every page. The FastAPI backend now serves data per endpoint directly from the source files, avoiding this constraint entirely.
 
 **BERTopic granularity tuning.** `min_topic_size=50` produced only 5 overly broad topics; `20` produced 51 usable ones. This required an actual retraining run on Colab to compare, not a parameter guess.
 
@@ -219,7 +227,8 @@ This repository contains the model development notebook. The deployed Streamlit 
 
 - 35% of negative reviews fall into a noise cluster and aren't represented in the priority matrix
 - 16.4% of reviews lack app version metadata and are excluded from temporal analysis
-- In-app review search operates on an 820-review sample, not the full corpus, for deployment memory efficiency
+- In-app review search operates on an 820-review sample, not the full corpus, for backend response-time efficiency
+- The Render free-tier backend still experiences a cold start on first request after inactivity; only the frontend's cold start was eliminated by the migration
 
 </details>
 
@@ -230,5 +239,6 @@ This repository contains the model development notebook. The deployed Streamlit 
 - Automated weekly re-scraping and inference pipeline to keep sentiment tracking current
 - Aspect-based sentiment analysis to separate multiple complaints within a single review
 - Cold-start handling for detecting entirely new complaint categories as they emerge
+- Expand in-app review search to the full corpus now that the backend isn't memory-constrained the way Streamlit was
 
 </details>
