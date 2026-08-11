@@ -61,7 +61,7 @@ Every project follows an end-to-end ML workflow: build an interpretable model, e
 - Custom priority matrix scores complaints by frequency, severity, and recent trend, converting NLP output into a ranked, actionable fix list
 - Deployed as a full-stack application: FastAPI backend serving sentiment, topic, and priority analytics, Next.js frontend with complaint exploration, version trends, and misclassification analysis
 
-🔗 [Notebook](https://github.com/GranBan/granthbangard_ds_portfolio/blob/main/Spotify%20NLP%20App%20Review%20Intelligence%20System/app_review_nlp.ipynb) &nbsp;·&nbsp; 🔗 [Live App](https://spotify-app-review-intelligence.vercel.app) &nbsp;·&nbsp; 🔗 [Frontend](https://github.com/GranBan/spotify-app-review-intelligence) &nbsp;·&nbsp; 🔗 [Backend](https://github.com/GranBan/backend-spotify-review-intelligence)
+🔗 [Notebook](https://github.com/GranBan/granthbangard_ds_portfolio/blob/main/Spotify%20NLP%20App%20Review%20Intelligence%20System/nlp_app_review.ipynb) &nbsp;·&nbsp; 🔗 [Live App](https://spotify-app-review-intelligence.vercel.app) &nbsp;·&nbsp; 🔗 [Frontend](https://github.com/GranBan/spotify-app-review-intelligence) &nbsp;·&nbsp; 🔗 [Backend](https://github.com/GranBan/backend-spotify-review-intelligence)
 
 ---
 
